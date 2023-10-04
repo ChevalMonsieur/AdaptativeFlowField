@@ -2,12 +2,46 @@
 <html lang="fr">
 
 <head>
+    <link rel="stylesheet" href="general.css">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JoliFond JS</title>
+    <title>JS FlowField</title>
 </head>
-<body style="margin: 0;">
+
+<body>
+    <img src = "noiseTest.svg" alt="grainy background"/>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.min.js"></script>
     <script src="main.js"></script>
+
+    <div class="contenu">
+        <h1 class="Titre">flow fields visualisation :</h1>
+
+        <div style="display: flex;">
+            <main id="main" class="visu"> </main>
+
+            <div style="width: 20%;">
+                <h3>Colors :</h3>
+
+                <div class="liste">
+                    <p onclick="stroke(0,255,200,opacity); windowResized()" class="bouton" id="turquoise">turquoise</p>
+                    <p onclick="stroke(255,0,0,opacity); windowResized()" class="bouton" id="red">red</p>
+                    <p onclick="stroke(225,170,10,opacity); windowResized()" class="bouton" id="saffron">saffron</p>
+                    <p onclick="stroke(210,210,210,opacity); windowResized()" class="bouton" id="titanium">titanium</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
 </body>
+</html>
+
+<svg>
+    <filter id="grain">
+        <feTurbulence 
+            type="fractalNoise" 
+            baseFrequency="0.14"
+        ></feTurbulence>
+    </filter>
+</svg>

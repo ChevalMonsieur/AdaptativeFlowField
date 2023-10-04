@@ -1,40 +1,89 @@
-let nbPoints = 100000; // amount of points
+let nbPoints = 5000; // amount of points
 let points = []; // list of all points
 
-let opacity = 12; // how visible is the point (0 = invisible, 255 = opaque)
-let speed = 0.5; // the speed represents how fast the points will move each frame
-let positionScale = 500; // the scale represents how much the noise will be zoomed
-let noiseScale = 100; // how much a point can change it's direction at total (1 = 2PI)
+let fadeSpeed = 0; // how fast the points will fade out (0 = no fade, 255 = instant fade)
+let opacity = 10; // how visible is the point (0 = invisible, 255 = opaque)
+let speed = 1; // the speed represents how fast the points will move each frame 
+let size = 1; // the size represents how big the points will be (better to keep at low values)
+let positionScale = 300; // the scale represents how much the noise will be zoomed
+let rotationScale = 1; // how much a point can change it's direction at total (1 = 2PI)
+let borderRule = "randomTeleport"; // determines what happens when a point goes off-screen (randomTeleport, linkedTeleport, none)
+
+let mainWidth;
+let mainHeight;
+
 
 function setup() {
 
-    // init canva settings
-    createCanvas(window.innerWidth, window.innerHeight); // set canva size
+    // get size of div
+    mainWidth = document.getElementById("main").clientWidth - 15;
+    mainHeight = document.getElementById("main").clientHeight + 350;
+
+    // initialize canvas
+    createCanvas(mainWidth, mainHeight); // set canva size
     background(0); // set background color in A
     stroke(0,255,200,opacity); // set color in RGBA
+    strokeWeight(size); // set size of points
 
     // create all points
     for (let i = 0; i < nbPoints; i++) {
-        points.push(createVector(random(innerWidth), random(innerHeight))); // add a new point with random position
+        points.push(createVector(random(mainWidth), random(mainHeight))); // add a new point with random position
     }
+
+    windowResized();
 }
 
 function draw() {
+    if (fadeSpeed > 0) {
+        background(0, 0, 0, fadeSpeed);
+    }
     for (vector of points) {
         // set the direction of the point with semi-random noise
-        let direction = 2 * noiseScale * Math.PI * noise(vector.x / positionScale, vector.y / positionScale);
+        let direction = 2 * rotationScale * Math.PI * noise(vector.x / positionScale, vector.y / positionScale);
 
         // apply the movement
         vector.x += Math.cos(direction) * speed;
         vector.y += Math.sin(direction) * speed;
 
-        // teleport point if it goes off-screen
-        if (vector.x < 0) vector.x = innerWidth;
-        else if (vector.x > innerWidth) vector.x = 0;
-        if (vector.y < 0) vector.y = innerHeight;
-        else if (vector.y > innerHeight) vector.y = 0;
+        // check if the point is off-screen and apply border rule
+        switch (borderRule) {
+            case "randomTeleport":
+                if (vector.x < 0 || vector.x > mainWidth || vector.y < 0 || vector.y > mainHeight) {
+                    vector.x = random(mainWidth);
+                    vector.y = random(mainHeight);
+                }
+                break;
+            case "linkedTeleport":
+                if (vector.x < 0) vector.x = mainWidth;
+                if (vector.x > mainWidth) vector.x = 0;
+                if (vector.y < 0) vector.y = mainHeight;
+                if (vector.y > mainHeight) vector.y = 0;
+                break;
+            case "none":
+            default:
+                break;
+        }
 
         // draw the point
         point(vector.x, vector.y)
     }
+}
+
+function windowResized() {
+
+    // get new div size
+    mainWidth = document.getElementById("main").clientWidth;
+    mainHeight = document.getElementById("main").clientHeight;
+
+    // resize canvas to correct size
+    resizeCanvas(mainWidth, mainHeight);
+    background(0);
+
+    // replace all points to random positions
+    for (vector of points) {
+        vector.x = random(innerWidth);
+        vector.y = random(innerHeight);
+    }
+
+    clear();
 }
