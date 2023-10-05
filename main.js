@@ -67,14 +67,16 @@ function draw() {
 }
 
 function windowResized() {
-    // get new div size
-    mainWidth = document.getElementById("main").clientWidth;
-    mainHeight = document.getElementById("setterCanvaHeight").clientHeight + 25; // + 25 is a manual offset to make canvas slightly bigger than the sidebar
+    if (mainWidth != document.getElementById("main").clientWidth) { // check that it is not only the height that changed (we don't care in this case)
+        // get new div size
+        mainWidth = document.getElementById("main").clientWidth;
+        mainHeight = document.getElementById("setterCanvaHeight").clientHeight + 25; // + 25 is a manual offset to make canvas slightly bigger than the sidebar
 
-    // resize canvas to correct size
-    resizeCanvas(mainWidth, mainHeight);
+        // resize canvas to correct size
+        resizeCanvas(mainWidth, mainHeight);
 
-    reset();
+        reset();
+    }
 }
 
 function reset() {
