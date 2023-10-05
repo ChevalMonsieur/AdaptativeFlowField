@@ -14,22 +14,23 @@
     <script src="main.js"></script>
 
     <div class="contenu">
-        <h1 class="Titre">flow fields visualisation :</h1>
+        <h1 class="titre">flow fields visualisation :</h1>
 
         <div style="display: flex;">
             <main id="main" class="visu"> 
-                <p onclick="noiseSeed(random(10000)); refresh()" class="bouton " style="position: absolute; background-color: black;">new seed</p>
+                <p onclick="noiseSeed(random(10000)); reset()" class="bouton" style="position: absolute; background-color: black;">new seed</p>
             </main>
 
-            <div style="width: 20%;">
+            <div class="sideBar">
+                <div id="setterCanvaHeight">
                 <div>
                     <h3>Colors :</h3>
 
                     <div class="liste">
-                        <p onclick="stroke(0,255,200,opacity); refresh()" class="bouton" id="turquoise">turquoise</p>
-                        <p onclick="stroke(255,0,0,opacity); refresh()" class="bouton" id="red">red</p>
-                        <p onclick="stroke(225,170,10,opacity); refresh()" class="bouton" id="saffron">saffron</p>
-                        <p onclick="stroke(210,210,210,opacity); refresh()" class="bouton" id="titanium">titanium</p>
+                        <p onclick="stroke(0,255,200,opacity); reset()" class="bouton" id="turquoise">turquoise</p>
+                        <p onclick="stroke(255,0,0,opacity); reset()" class="bouton" id="red">red</p>
+                        <p onclick="stroke(225,170,10,opacity); reset()" class="bouton" id="saffron">saffron</p>
+                        <p onclick="stroke(210,210,210,opacity); reset()" class="bouton" id="titanium">titanium</p>
                     </div>
                 </div>
 
@@ -37,26 +38,47 @@
                     <h3>Border rule :</h3>
 
                     <div class="liste">
-                        <p onclick="borderRule='randomTeleport'; refresh()" class="bouton">random teleport</p>
-                        <p onclick="borderRule='linkedTeleport'; refresh()" class="bouton">linked teleport</p>
-                        <p onclick="borderRule='none'; refresh()" class="bouton">none</p>
+                        <p onclick="borderRule='randomTeleport'; reset()" class="bouton">random teleport</p>
+                        <p onclick="borderRule='linkedTeleport'; reset()" class="bouton">linked teleport</p>
+                        <p onclick="borderRule='none'; reset()" class="bouton">none</p>
                     </div>
                 </div>
                 
                 <div>
                     <h3>Values :</h3>
 
-                    <div class="liste" title="usual values : 500 - 3000&#013(performance reasons)">
+                    <div class="valueWithName" title="usual values : 500 - 3000&#013(performance reasons)">
                         <p class="valueName">particle amount : </p>
-                        <input id="nbPoints" class="number" value="2000" onkeydown="inputNbParticle(event)"><br>
-
-                        <p class="valueName"> particle speed : </p>
-                        <input id="nbPoints" class="number" value="1" onkeydown="inputSpeed(event)" style="max-width: 10%;"><br>
+                        <input id="nbPoints" class="value" value="2000" onkeydown="inputNbParticle(event); console.log(event.keyCode)"><br>
                     </div>
+                    <div class="valueWithName" title="usual values : 0.1 - 2">
+                        <p class="valueName">speed : </p>
+                        <input id="speed" class="value" value="0.5" onkeydown="inputSpeed(event)">
+                    </div>
+                    <div class="valueWithName" title="usual values : 0.5 - 2.5">
+                        <p class="valueName">particle size : </p>
+                        <input id="size" class="value" value="1" onkeydown="inputSize(event)">
+                    </div>
+                    <div class="valueWithName" title="usual values : 20 - 1000">
+                        <p class="valueName">position scale : </p>
+                        <input id="positionScale" class="value" value="200" onkeydown="inputPositionScale(event)">
+                    </div>
+                    <div class="valueWithName" title="usual values : 0.5 - 100">
+                        <p class="valueName">rotation scale : </p>
+                        <input id="rotationScale" class="value" value="1" onkeydown="inputRotationScale(event)">
+                    </div>
+                    <div class="valueWithName" title="min value : 0&#013max value : 255">
+                        <p class="valueName">particle opacity : </p>
+                        <input id="opacity" class="value" value="20" onkeydown="inputOpacity(event)">
+                    </div>
+                    <div class="valueWithName" title="min value : 0&#013max value : 255">
+                        <p class="valueName">fade : </p>
+                        <input id="fadeSpeed" class="value" value="0" onkeydown="inputFade(event)">
+                    </div>
+                </div>
                 </div>
             </div>
         </div>
-
     </div>
 </body>
 </html>

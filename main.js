@@ -1,12 +1,12 @@
-let nbPoints = 1000; // amount of points
+let nbPoints = 2000; // amount of points
 let points = []; // list of all points
 
-let speed = 1; // the speed represents how fast the points will move each frame 
+let speed = 0.5; // the speed represents how fast the points will move each frame 
 let size = 1; // the size represents how big the points will be (better to keep at low values)
-let positionScale = 300; // the scale represents how much the noise will be zoomed
+let positionScale = 200; // the scale represents how much the noise will be zoomed
 let rotationScale = 1; // how much a point can change it's direction at total (1 = 2PI)
+let opacity = 20; // how visible is the point (0 = invisible, 255 = opaque)
 let fadeSpeed = 0; // how fast the points will fade out (0 = no fade, 255 = instant fade)
-let opacity = 40; // how visible is the point (0 = invisible, 255 = opaque)
 let borderRule = "randomTeleport"; // determines what happens when a point goes off-screen (randomTeleport, linkedTeleport, none)
 
 let mainWidth;
@@ -16,7 +16,7 @@ let mainHeight;
 function setup() {
     // get size of div
     mainWidth = document.getElementById("main").clientWidth;
-    mainHeight = document.getElementById("main").clientHeight + 100;
+    mainHeight = document.getElementById("setterCanvaHeight").clientHeight + 25; // + 25 is a manual offset to make canvas slightly bigger than the sidebar
 
     // initialize canvas
     createCanvas(mainWidth, mainHeight); // set canva size
@@ -69,15 +69,15 @@ function draw() {
 function windowResized() {
     // get new div size
     mainWidth = document.getElementById("main").clientWidth;
-    mainHeight = document.getElementById("main").clientHeight - 4;
+    mainHeight = document.getElementById("setterCanvaHeight").clientHeight + 25; // + 25 is a manual offset to make canvas slightly bigger than the sidebar
 
     // resize canvas to correct size
     resizeCanvas(mainWidth, mainHeight);
 
-    refresh();
+    reset();
 }
 
-function refresh() {
+function reset() {
     //reset values
     background(0);
     totalOffset = 0;
@@ -94,8 +94,9 @@ function refresh() {
 ///////////////////////////
 
 function inputNbParticle(event) {
+    // check if enter is pressed
+    if (event.keyCode === 13) {
 
-    if (event.keyCode == 13) {
         points = []; // destroy all points
         nbPoints = document.getElementById("nbPoints").value; // get new amount of points
 
@@ -104,13 +105,50 @@ function inputNbParticle(event) {
             points.push(createVector(random(mainWidth), random(mainHeight)));
         }
 
-        refresh();
+        reset();
     }
 }
 
 function inputSpeed(event) {
+    if (event.keyCode == 13) { // check if enter is pressed
+        speed = document.getElementById("speed").value; // change speed
+        reset();
+    }
+}
 
-    if (event.keyCode == 13) {
+function inputSize(event) {
+    if (event.keyCode == 13) { // check if enter is pressed
+        size = document.getElementById("size").value; // change size
+        strokeWeight(size); // set size of points
+        reset();
+    }
+}
 
+function inputPositionScale(event) {
+    if (event.keyCode == 13) { // check if enter is pressed
+        positionScale = document.getElementById("positionScale").value; // change positionScale
+        reset();
+    }
+}
+
+function inputRotationScale(event) {
+    if (event.keyCode == 13) { // check if enter is pressed
+        rotationScale = document.getElementById("rotationScale").value; // change rotationScale
+        reset();
+    }
+}
+
+function inputOpacity(event) {
+    if (event.keyCode == 13) { // check if enter is pressed
+        opacity = Math.floor(document.getElementById("opacity").value); // change opacity (USE MATH.FLOOR BECAUSE STROKE DOESN'T ACCEPT FLOATS)
+        stroke(0, 255, 200, opacity); // set color in RGBA
+        reset();
+    }
+}
+
+function inputFade(event) {
+    if (event.keyCode == 13) { // check if enter is pressed
+        fadeSpeed = Math.floor(document.getElementById("fadeSpeed").value); // change fadeSpeed (USE MATH.FLOOR BECAUSE STROKE DOESN'T ACCEPT FLOATS)
+        reset();
     }
 }

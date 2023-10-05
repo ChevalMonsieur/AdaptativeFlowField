@@ -13,7 +13,7 @@ body {
 input {
     background-color: black;
     color: whitesmoke;
-    max-width: 20%;  
+    max-width: 30px;  
 }
 
 /* CLASS */
@@ -31,13 +31,12 @@ input {
     margin: 1rem auto 1rem auto;
 }
 
-.Titre {
-    margin: 4rem auto 2rem auto;
+.sideBar {
+    width: 20%;
 }
 
-.liste {
-    display: flex;
-    flex-wrap: wrap;
+.titre {
+    margin: 2.5rem auto 1rem auto;
 }
 
 .bouton {
@@ -49,12 +48,17 @@ input {
     transition: color 0.2s, transform 0.2s ease-in-out;
 }
 
+.liste, .valueWithName {
+    display: flex;
+    flex-wrap: wrap;
+}
+
 .valueName {
     font-size: medium;
     margin: 0.5rem 0 0.5rem 0;
 }
 
-.number {
+.value {
     margin: auto;
     margin-left: 0.5rem;
     border: 0;
@@ -86,4 +90,48 @@ input {
 
 #titanium:hover {
     color: rgb(210,210,210);
+}
+
+
+
+/* MEDIA QUERIES */
+
+@media screen and (max-width: 1050px) {
+
+    .valueWithName {
+        display: block;
+    }
+
+}
+
+@media screen and (max-width: 800px) {
+
+    h3 {
+        font-size: 1rem;
+    }
+
+    .valueName, .bouton {
+        font-size: 0.8rem;
+    }
+
+    .visu {
+        width: 75%;
+    }
+
+    .sideBar {
+        width: 25%;
+    }
+
+}
+
+@media screen and (max-width: 600px) {
+
+    .visu {
+        width: 70%;
+    }
+
+    .sideBar {
+        width: 30%;
+    }
+
 }
