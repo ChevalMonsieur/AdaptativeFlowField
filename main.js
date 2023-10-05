@@ -15,8 +15,13 @@ let mainHeight;
 
 function setup() {
     // get size of div
-    mainWidth = document.getElementById("main").clientWidth;
-    mainHeight = document.getElementById("setterCanvaHeight").clientHeight + 25; // + 25 is a manual offset to make canvas slightly bigger than the sidebar
+    if (document.getElementById("setterCanvaHeight").clientWidth > 1920) {
+        mainWidth = document.getElementById("main").clientWidth;
+        mainHeight = innerHeight - 100; // test
+    } else {
+        mainWidth = document.getElementById("main").clientWidth;
+        mainHeight = document.getElementById("setterCanvaHeight").clientHeight + 25; // + 25 is a manual offset to make canvas slightly bigger than the sidebar
+    }
 
     // initialize canvas
     createCanvas(mainWidth, mainHeight); // set canva size
@@ -69,9 +74,14 @@ function draw() {
 function windowResized() {
     if (mainWidth != document.getElementById("main").clientWidth) { // check that it is not only the height that changed (we don't care in this case)
         // get new div size
-        mainWidth = document.getElementById("main").clientWidth;
-        mainHeight = document.getElementById("setterCanvaHeight").clientHeight + 25; // + 25 is a manual offset to make canvas slightly bigger than the sidebar
-
+        if (document.getElementById("setterCanvaHeight").clientWidth > 1920) {
+            mainWidth = document.getElementById("main").clientWidth;
+            mainHeight = innerHeight - 100; // test
+        } else {
+            mainWidth = document.getElementById("main").clientWidth;
+            mainHeight = document.getElementById("setterCanvaHeight").clientHeight + 25; // + 25 is a manual offset to make canvas slightly bigger than the sidebar
+        }
+        
         // resize canvas to correct size
         resizeCanvas(mainWidth, mainHeight);
 
