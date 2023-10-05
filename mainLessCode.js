@@ -1,7 +1,7 @@
 let points = [], nbPoints = 10000, opacity = 20, speed = 1, positionScale = 300, noiseScale = 1;
 
 function setup() {
-    createCanvas(window.innerWidth, window.innerHeight);
+    createCanvas(document.getElementById("name").clientWidth, document.getElementById("name").clientHeight);
     background(0);
     stroke(0,255,200,opacity);
     for (let i = 0; i < nbPoints; i++) points.push(createVector(random(innerWidth), random(innerHeight)));

@@ -1,15 +1,27 @@
+/* IMPORT */
+
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap');
+
+/* TAG */
 
 body {
     font-family: 'Montserrat', sans-serif;
     color: whitesmoke;
     background-color: black;
-    background-image: url(#grain);
 }
+
+input {
+    background-color: black;
+    color: whitesmoke;
+    max-width: 20%;  
+}
+
+/* CLASS */
 
 .visu {
     border: solid whitesmoke 1px;
-    border-radius: 10px;
+    border-radius: 4px;
+
     margin-right: 1rem;
     width: 80%;
 }
@@ -37,23 +49,41 @@ body {
     transition: color 0.2s, transform 0.2s ease-in-out;
 }
 
+.valueName {
+    font-size: medium;
+    margin: 0.5rem 0 0.5rem 0;
+}
+
+.number {
+    margin: auto;
+    margin-left: 0.5rem;
+    border: 0;
+    border-bottom: 1px solid whitesmoke;
+}
+
+:focus-visible {
+    outline: none !important;
+}
+
 .bouton:hover {
     transform: scale(1.1);
     cursor: pointer;
 }
+
+/* ID */
 
 #turquoise:hover {
     color: rgb(0,255,200);
 }
 
 #red:hover {
-    color: rgb(255,0,0);
+    color: rgb(255,100,100);
 }
 
 #saffron:hover {
     color: rgb(225,170,10);
 }
+
 #titanium:hover {
     color: rgb(210,210,210);
 }
-
