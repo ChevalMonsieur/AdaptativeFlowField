@@ -13,7 +13,7 @@ body {
 input {
     background-color: black;
     color: whitesmoke;
-    max-width: 30px;  
+    max-width: 50px;  
 }
 
 /* CLASS */
@@ -125,6 +125,10 @@ input {
 }
 
 @media screen and (max-width: 600px) {
+
+    .valueName, .bouton {
+        font-size: 0.7rem;
+    }
 
     .visu {
         width: 70%;
