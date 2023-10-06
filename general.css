@@ -26,6 +26,19 @@ input {
     width: 80%;
 }
 
+.boutonAbsolu {
+    position: absolute;
+    background-color: black;
+}
+
+.boutonFixed {
+    position: fixed;
+    background-color: black; 
+    bottom: 1rem;
+    right: 1rem;
+
+}
+
 .contenu {
     width: 90%;
     margin: 1rem auto 1rem auto;
@@ -36,7 +49,7 @@ input {
 }
 
 .titre {
-    margin: 2.5rem auto 1rem auto;
+    margin: 4rem auto 2rem auto;
 }
 
 .bouton {
@@ -44,6 +57,7 @@ input {
     border-radius: 5px;
     padding: 0.3rem;
     margin: 0.3rem;
+    width: fit-content;
 
     transition: color 0.2s, transform 0.2s ease-in-out;
 }
@@ -63,6 +77,7 @@ input {
     margin-left: 0.5rem;
     border: 0;
     border-bottom: 1px solid whitesmoke;
+    background-color: rgba(54, 41, 41, 0);
 }
 
 :focus-visible {
@@ -72,6 +87,10 @@ input {
 .bouton:hover {
     transform: scale(1.1);
     cursor: pointer;
+}
+
+.presets {
+    display: flex;
 }
 
 /* ID */
@@ -96,7 +115,7 @@ input {
 
 /* MEDIA QUERIES */
 
-@media screen and (max-width: 1050px) {
+@media screen and (max-width: 1150px) {
 
     .valueWithName {
         display: block;

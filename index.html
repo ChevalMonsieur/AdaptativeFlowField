@@ -17,70 +17,91 @@
         <h1 class="titre">flow fields visualisation :</h1>
 
         <div style="display: flex;">
-            <main id="main" class="visu"> 
-                <p onclick="noiseSeed(random(10000)); reset()" class="bouton" style="position: absolute; background-color: black;">new seed</p>
+            <main id="main" class="visu">
+                <p onclick="noiseSeed(random(10000)); reset()" class="bouton boutonAbsolu">new seed</p>
+                <p class="bouton boutonFixed" style="right: 100;" onclick="saveCanvas();" title="don't be impatient&#013it might take a while">save canva</p>
             </main>
 
             <div class="sideBar">
                 <div id="setterCanvaHeight">
-                <div>
-                    <h3>Colors :</h3>
+                    <div>
+                        <h3>Colors :</h3>
 
-                    <div class="liste">
-                        <p onclick="stroke(0,255,200,opacity); reset()" class="bouton" id="turquoise">turquoise</p>
-                        <p onclick="stroke(255,0,0,opacity); reset()" class="bouton" id="red">red</p>
-                        <p onclick="stroke(225,170,10,opacity); reset()" class="bouton" id="saffron">saffron</p>
-                        <p onclick="stroke(210,210,210,opacity); reset()" class="bouton" id="titanium">titanium</p>
+                        <div class="liste">
+                            <p onclick="currentColor = color(0, 255, 200, opacity); reset()" class="bouton"
+                                id="turquoise">turquoise</p>
+                            <p onclick="currentColor = color(255, 0, 0, opacity); reset()" class="bouton" id="red">red
+                            </p>
+                            <p onclick="currentColor = color(225, 170, 10, opacity); reset()" class="bouton"
+                                id="saffron">saffron</p>
+                            <p onclick="currentColor = color(210, 210, 210, opacity); reset()" class="bouton"
+                                id="titanium">titanium</p>
+                        </div>
                     </div>
-                </div>
 
-                <div>
-                    <h3>Border rule :</h3>
+                    <div>
+                        <h3>Border rule :</h3>
 
-                    <div class="liste">
-                        <p onclick="borderRule='randomTeleport'; reset()" class="bouton">random teleport</p>
-                        <p onclick="borderRule='linkedTeleport'; reset()" class="bouton">linked teleport</p>
-                        <p onclick="borderRule='none'; reset()" class="bouton">none</p>
+                        <div class="liste">
+                            <p onclick="borderRule='randomTeleport'; reset()" class="bouton">random teleport</p>
+                            <p onclick="borderRule='linkedTeleport'; reset()" class="bouton">linked teleport</p>
+                            <p onclick="borderRule='none'; reset()" class="bouton">none</p>
+                        </div>
                     </div>
-                </div>
-                
-                <div>
-                    <h3>Values :</h3>
 
-                    <div class="valueWithName" title="usual values : 500 - 3000&#013(performance reasons)">
-                        <p class="valueName">particle amount : </p>
-                        <input id="nbPoints" class="value" value="2000" onkeydown="inputNbParticle(event); console.log(event.keyCode)"><br>
+                    <div>
+                        <h3>Values :</h3>
+
+                        <div class="valueWithName" title="usual values : 500 - 3000&#013(performance reasons)">
+                            <p class="valueName">particle amount : </p>
+                            <input id="nbPoints" class="value" value="2000" onkeydown="inputNbParticle(event);"><br>
+                        </div>
+                        <div class="valueWithName" title="usual values : 0.1 - 2">
+                            <p class="valueName">speed : </p>
+                            <input id="speed" class="value" value="0.5" onkeydown="inputSpeed(event)">
+                        </div>
+                        <div class="valueWithName" title="usual values : 0.5 - 2.5">
+                            <p class="valueName">particle size : </p>
+                            <input id="size" class="value" value="1" onkeydown="inputSize(event)">
+                        </div>
+                        <div class="valueWithName" title="usual values : 20 - 1000">
+                            <p class="valueName">position scale : </p>
+                            <input id="positionScale" class="value" value="200" onkeydown="inputPositionScale(event)">
+                        </div>
+                        <div class="valueWithName" title="usual values : 0.5 - 100">
+                            <p class="valueName">rotation scale : </p>
+                            <input id="rotationScale" class="value" value="1" onkeydown="inputRotationScale(event)">
+                        </div>
+                        <div class="valueWithName" title="min value : 0&#013max value : 255">
+                            <p class="valueName">particle opacity : </p>
+                            <input id="opacity" class="value" value="20" onkeydown="inputOpacity(event)">
+                        </div>
+                        <div class="valueWithName" title="min value : 0&#013max value : 255">
+                            <p class="valueName">fade : </p>
+                            <input id="fadeSpeed" class="value" value="0" onkeydown="inputFade(event)">
+                        </div>
                     </div>
-                    <div class="valueWithName" title="usual values : 0.1 - 2">
-                        <p class="valueName">speed : </p>
-                        <input id="speed" class="value" value="0.5" onkeydown="inputSpeed(event)">
-                    </div>
-                    <div class="valueWithName" title="usual values : 0.5 - 2.5">
-                        <p class="valueName">particle size : </p>
-                        <input id="size" class="value" value="1" onkeydown="inputSize(event)">
-                    </div>
-                    <div class="valueWithName" title="usual values : 20 - 1000">
-                        <p class="valueName">position scale : </p>
-                        <input id="positionScale" class="value" value="200" onkeydown="inputPositionScale(event)">
-                    </div>
-                    <div class="valueWithName" title="usual values : 0.5 - 100">
-                        <p class="valueName">rotation scale : </p>
-                        <input id="rotationScale" class="value" value="1" onkeydown="inputRotationScale(event)">
-                    </div>
-                    <div class="valueWithName" title="min value : 0&#013max value : 255">
-                        <p class="valueName">particle opacity : </p>
-                        <input id="opacity" class="value" value="20" onkeydown="inputOpacity(event)">
-                    </div>
-                    <div class="valueWithName" title="min value : 0&#013max value : 255">
-                        <p class="valueName">fade : </p>
-                        <input id="fadeSpeed" class="value" value="0" onkeydown="inputFade(event)">
-                    </div>
+                    <br>
+                    <p onclick="applyAllInputs()" class="bouton">apply values</p>
                 </div>
-                </div>
+            </div>
+        </div>
+            <h3 style="margin-top: 3rem;"> Presets :</h3>
+            <div class="presets">
+                <p onclick="currentColor = color(120, 0, 255, opacity); reset()" class="bouton"
+                    id="turquoise">turquoise</p>
+                <p onclick="currentColor = color(255, 0, 0, opacity); reset()" class="bouton" id="red">red
+                </p>
+                <p onclick="currentColor = color(225, 170, 10, opacity); reset()" class="bouton"
+                    id="saffron">saffron</p>
+                <p onclick="currentColor = color(210, 210, 210, opacity); reset()" class="bouton"
+                    id="titanium">titanium</p>
+
             </div>
         </div>
     </div>
 </body>
+
 </html>
 
 <!--font-size: 90px;
