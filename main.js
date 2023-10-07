@@ -1,3 +1,7 @@
+///////////////////////////
+//    Canvas drawing     //
+///////////////////////////
+
 let nbPoints = 2000; // amount of points
 let points = []; // list of all points
 
@@ -16,9 +20,9 @@ let currentColor2; // 2nd color of the points (if needed)
 function setup() {
 
     // get size of div
-    if (window.innerWidth > 1920) {
+    if (window.innerWidth > 3000) {
         mainWidth = document.getElementById("main").clientWidth;
-        mainHeight = window.innerHeight - 300; // test
+        mainHeight = window.innerHeight - 400; // test
     } else {
         mainWidth = document.getElementById("main").clientWidth;
         mainHeight = document.getElementById("setterCanvaHeight").clientHeight + 25; // + 25 is a manual offset to make canvas slightly bigger than the sidebar
@@ -39,13 +43,15 @@ function setup() {
 }
 
 function draw() {
-    // add fade effect if fade != 0
+    // add fade effect if fade is not 0
     if (fadeSpeed > 0) {
         background(0, fadeSpeed);
     }
 
     for (vector of points) {
+        // if there are 2 colors, change color at the middle of the list
         if (points[Math.floor(points.length/2)] == vector && currentColor2 != null) stroke(currentColor2)
+
         // set the direction of the point with semi-random noise
         let direction = 2 * rotationScale * Math.PI * noise(vector.x / positionScale, vector.y / positionScale);
 
@@ -55,19 +61,19 @@ function draw() {
 
         // check if the point is off-screen and apply border rule
         switch (borderRule) {
-            case "randomTeleport":
+            case "randomTeleport": // teleport to random position
                 if (vector.x < 0 || vector.x > mainWidth || vector.y < 0 || vector.y > mainHeight) {
                     vector.x = random(mainWidth);
                     vector.y = random(mainHeight);
                 }
                 break;
-            case "linkedTeleport":
+            case "linkedTeleport": // teleport to opposite side (bottom = top, left = right)
                 if (vector.x < 0) vector.x = mainWidth;
                 if (vector.x > mainWidth) vector.x = 0;
                 if (vector.y < 0) vector.y = mainHeight;
                 if (vector.y > mainHeight) vector.y = 0;
                 break;
-            case "none":
+            case "none": // let the point go off-screen
             default:
                 break;
         }
@@ -97,7 +103,7 @@ function windowResized() {
 }
 
 function reset() {
-    //reset values
+    //refresh values
     stroke(currentColor);
     strokeWeight(size);
     background(0);
@@ -109,9 +115,8 @@ function reset() {
     }
 }
 
-
 ///////////////////////////
-//      Values HTML      //
+//  Setters Values HTML  //
 ///////////////////////////
 
 function inputNbParticle(event) {
@@ -140,7 +145,7 @@ function inputSpeed(event) {
 function inputSize(event) {
     if (event.keyCode === 13) { // check if enter is pressed
         size = document.getElementById("size").value; // change size
-        strokeWeight(size); // set size of points
+        strokeWeight(size); // apply size to stroke
         reset();
     }
 }
@@ -163,7 +168,7 @@ function inputOpacity(event) {
     if (event.keyCode === 13) { // check if enter is pressed
         opacity = Math.floor(document.getElementById("opacity").value); // change opacity (USE MATH.FLOOR BECAUSE STROKE DOESN'T ACCEPT FLOATS)
         currentColor.setAlpha(opacity); // set opacity in color
-        if (currentColor2 != null) currentColor2.setAlpha(opacity); // set opacity in color2 (if needed
+        if (currentColor2 != null) currentColor2.setAlpha(opacity); // set opacity in color2 (if needed)
         stroke(currentColor); // set color in RGBA
         reset();
     }
@@ -177,14 +182,14 @@ function inputFade(event) {
 }
 
 function inputBorderRule(inputBorderRule) {
-    if (inputBorderRule != null) {
+    if (inputBorderRule != null) { // makes it so that it doesn't change borderRule if inputBorderRule is null
         borderRule = inputBorderRule // change borderRule
     }
     reset();
 }
 
 function inputColor(inputColor, inputColor2) {
-    if (inputColor != null) {
+    if (inputColor != null) { // makes it so that it doesn't change color if inputColor is null (serves for apply all inputs when called with no values in html)
         currentColor = inputColor; // change color
         currentColor2 = inputColor2; // change 2nd color
     }
@@ -193,9 +198,11 @@ function inputColor(inputColor, inputColor2) {
 }
 
 function applyAllInputs(newBorderRule, newColor, newColor2) {
-    // calls all inputs with correct event.keycode (enter)
+    // inputColor needs to be called before inputOpacity and inputFadeSpeed
     inputBorderRule(newBorderRule);
     inputColor(newColor, newColor2);
+    
+    // calls all inputsFunctions with correct event.keycode (enter)
     inputNbParticle({keyCode: 13});
     inputSpeed({keyCode: 13});
     inputSize({keyCode: 13});
@@ -207,13 +214,11 @@ function applyAllInputs(newBorderRule, newColor, newColor2) {
     reset();
 }
 
-
 ///////////////////////////
 //        Presets        //
 ///////////////////////////
 
 function presetSandStream() {
-
     // modify all values in html
     document.getElementById("nbPoints").value = 2000;
     document.getElementById("speed").value = 50;
@@ -230,6 +235,7 @@ function presetSandStream() {
 
 
 function presetHighway() {
+    // modify all values in html
     document.getElementById("nbPoints").value = 1000;
     document.getElementById("speed").value = 10;
     document.getElementById("size").value = 1;
@@ -244,6 +250,7 @@ function presetHighway() {
 }
 
 function presetGenerativeMap() {
+    // modify all values in html
     document.getElementById("nbPoints").value = 3000;
     document.getElementById("speed").value = 0.2;
     document.getElementById("size").value = 1;
@@ -258,6 +265,7 @@ function presetGenerativeMap() {
 }
 
 function presetGlitch() {
+    // modify all values in html
     document.getElementById("nbPoints").value = 2000;
     document.getElementById("speed").value = 150;
     document.getElementById("size").value = 0.1;
@@ -272,6 +280,7 @@ function presetGlitch() {
 }
 
 function presetDuoTone() {
+    // modify all values in html
     document.getElementById("nbPoints").value = 10000;
     document.getElementById("speed").value = 0.3;
     document.getElementById("size").value = 1;

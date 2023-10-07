@@ -11,24 +11,28 @@
 
 body {
     font-family: 'Montserrat', sans-serif;
-    color: whitesmoke;
     background-color: black;
+    color: whitesmoke;
+
+    display: flex;
+    flex-direction: column;
     margin: 0;
+    min-height: 100vh;
 }
 
 input {
     background-color: black;
     color: whitesmoke;
+
     max-width: 50px;  
 }
 
 footer {
-    margin-top: 3rem;
-    padding: 1rem;
-    border-top: 1px solid whitesmoke;
+    margin-top: auto;
+}
 
-    display: flex;
-    justify-content: space-evenly;
+img {
+    color: whitesmoke;
 }
 
 /* CLASS */
@@ -43,12 +47,13 @@ footer {
 .visu {
     border: solid whitesmoke 1px;
     border-radius: 4px;
-
     margin-right: 1rem;
     width: 80%;
 }
 
 .bouton {
+    background-color: black;
+
     border: solid whitesmoke 1px;
     border-radius: 5px;
     padding: 0.3rem;
@@ -60,19 +65,18 @@ footer {
 
 .bouton:hover {
     transform: scale(1.1);
-    color: rgb(210,210,210);
     cursor: pointer;
+
+    color: rgb(210,210,210);
     font-weight: bold;
 }
 
 .boutonAbsolu {
     position: absolute;
-    background-color: black;
 }
 
 .boutonFixed {
     position: fixed;
-    background-color: black; 
     bottom: 1rem;
     right: 1rem;
 }
@@ -97,6 +101,7 @@ footer {
 
 .valueName {
     font-size: medium;
+
     margin: 0.5rem 0 0.5rem 0;
 }
 
@@ -105,16 +110,29 @@ footer {
     margin-left: 0.5rem;
     border: 0;
     border-bottom: 1px solid whitesmoke;
-    background-color: rgba(54, 41, 41, 0);
 }
 
 .presets {
     display: flex;
 }
 
+.first {
+    margin-left: 0;
+}
+
+.footer {
+    margin-top: 2.5rem;
+    padding: 1rem;
+    border-top: 1px solid whitesmoke;
+
+    display: flex;
+    justify-content: space-evenly;
+}
+
 .imageFooter {
     margin: 0.3rem 0 0.3rem 0;
     width: 2rem;
+
     transition: transform .2s;
 }
 
@@ -157,7 +175,8 @@ footer {
 }
 
 #duoTone:hover {
-    background: linear-gradient(to right, rgb(255, 247, 3) 0%, rgb(255, 77, 216) 100%);
+    background: linear-gradient(to right, rgb(255, 247, 3), rgb(255, 77, 216));
+
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -184,16 +203,16 @@ footer {
         font-size: 1rem;
     }
 
-    .valueName, .bouton {
-        font-size: 0.8rem;
-    }
-
     .visu {
         width: 75%;
     }
 
     .sideBar {
         width: 25%;
+    }
+
+    .valueName, .bouton {
+        font-size: 0.8rem;
     }
 
     .imageFooter {
@@ -204,16 +223,16 @@ footer {
 
 @media screen and (max-width: 600px) {
 
-    .valueName, .bouton {
-        font-size: 0.7rem;
-    }
-
     .visu {
         width: 70%;
     }
 
     .sideBar {
         width: 30%;
+    }
+    
+    .valueName, .bouton {
+        font-size: 0.7rem;
     }
 
     footer {
