@@ -229,7 +229,7 @@ function presetSandStream() {
 }
 
 
-function preset2() {
+function presetHighway() {
     document.getElementById("nbPoints").value = 1000;
     document.getElementById("speed").value = 10;
     document.getElementById("size").value = 1;
