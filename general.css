@@ -13,6 +13,7 @@ body {
     font-family: 'Montserrat', sans-serif;
     color: whitesmoke;
     background-color: black;
+    margin: 0;
 }
 
 input {
@@ -21,7 +22,23 @@ input {
     max-width: 50px;  
 }
 
+footer {
+    margin-top: 3rem;
+    padding: 1rem;
+    border-top: 1px solid whitesmoke;
+
+    display: flex;
+    justify-content: space-evenly;
+}
+
 /* CLASS */
+
+.titre {
+    margin: 5rem auto 3rem auto;
+
+    font-family: "NeutralFace";
+    letter-spacing: 0.2rem;
+}
 
 .visu {
     border: solid whitesmoke 1px;
@@ -29,6 +46,23 @@ input {
 
     margin-right: 1rem;
     width: 80%;
+}
+
+.bouton {
+    border: solid whitesmoke 1px;
+    border-radius: 5px;
+    padding: 0.3rem;
+    margin: 0.3rem;
+    width: fit-content;
+
+    transition: color 0.2s, transform 0.2s ease-in-out;
+}
+
+.bouton:hover {
+    transform: scale(1.1);
+    color: rgb(210,210,210);
+    cursor: pointer;
+    font-weight: bold;
 }
 
 .boutonAbsolu {
@@ -41,7 +75,10 @@ input {
     background-color: black; 
     bottom: 1rem;
     right: 1rem;
+}
 
+:focus-visible {
+    outline: none !important;
 }
 
 .contenu {
@@ -51,23 +88,6 @@ input {
 
 .sideBar {
     width: 20%;
-}
-
-.titre {
-    margin: 4rem auto 2rem auto;
-
-    font-family: "NeutralFace";
-    letter-spacing: 0.2rem;
-}
-
-.bouton {
-    border: solid whitesmoke 1px;
-    border-radius: 5px;
-    padding: 0.3rem;
-    margin: 0.3rem;
-    width: fit-content;
-
-    transition: color 0.2s, transform 0.2s ease-in-out;
 }
 
 .liste, .valueWithName {
@@ -88,19 +108,18 @@ input {
     background-color: rgba(54, 41, 41, 0);
 }
 
-:focus-visible {
-    outline: none !important;
-}
-
-.bouton:hover {
-    transform: scale(1.1);
-    color: rgb(210,210,210);
-    cursor: pointer;
-    font-weight: bold;
-}
-
 .presets {
     display: flex;
+}
+
+.imageFooter {
+    margin: 0.3rem 0 0.3rem 0;
+    width: 2rem;
+    transition: transform .2s;
+}
+
+.imageFooter:hover {
+    transform: scale(1.2);
 }
 
 /* ID */
@@ -151,7 +170,7 @@ input {
 
 /* MEDIA QUERIES */
 
-@media screen and (max-width: 1150px) {
+@media screen and (max-width: 1200px) {
 
     .valueWithName {
         display: block;
@@ -177,6 +196,10 @@ input {
         width: 25%;
     }
 
+    .imageFooter {
+        width: 1.5rem;
+    }
+
 }
 
 @media screen and (max-width: 600px) {
@@ -191,5 +214,13 @@ input {
 
     .sideBar {
         width: 30%;
+    }
+
+    footer {
+        justify-content: center;
+    }
+
+    .imageFooter {
+        margin: 0.3rem 1rem 0.3rem 1rem;
     }
 }

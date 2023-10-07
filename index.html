@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JS FlowField</title>
+    <title>Adaptive Flow Fields</title>
 </head>
 
 <body>
@@ -18,10 +18,8 @@
 
         <div style="display: flex;">
             <main id="main" class="visu">
-                <p onclick=" let x = random(10000); noiseSeed(x); console.log(x); reset();" class="bouton boutonAbsolu">
-                    new seed</p>
-                <p class="bouton boutonFixed" onclick="saveCanvas();"
-                    title="don't be impatient&#013it might take a while">save canva</p>
+                <p onclick=" let x = random(10000); noiseSeed(x); console.log(x); reset();" class="bouton boutonAbsolu">new seed</p>
+                <p class="bouton boutonFixed" onclick="saveCanvas('FlowFieldCanvas', 'png');" title="don't be impatient&#013it might take a while">save canva</p>
             </main>
 
             <div class="sideBar">
@@ -30,14 +28,10 @@
                         <h3>Colors :</h3>
 
                         <div class="liste">
-                            <p onclick="inputColor(color(0, 255, 200, opacity))" class="bouton" id="turquoise">turquoise
-                            </p>
-                            <p onclick="inputColor(color(255, 0, 0, opacity))" class="bouton" id="red">red
-                            </p>
-                            <p onclick="inputColor(color(225, 170, 10, opacity))" class="bouton" id="saffron">saffron
-                            </p>
-                            <p onclick="inputColor(color(210, 210, 210, opacity))" class="bouton" id="titanium">titanium
-                            </p>
+                            <p onclick="inputColor(color(0, 255, 200, opacity))" class="bouton" id="turquoise">turquoise</p>
+                            <p onclick="inputColor(color(255, 0, 0, opacity))" class="bouton" id="red">red</p>
+                            <p onclick="inputColor(color(225, 170, 10, opacity))" class="bouton" id="saffron">saffron</p>
+                            <p onclick="inputColor(color(210, 210, 210, opacity))" class="bouton" id="titanium">titanium</p>
                         </div>
                     </div>
 
@@ -83,8 +77,7 @@
                             <input id="fadeSpeed" class="value" value="0" onkeydown="inputFade(event)">
                         </div>
                     </div>
-                    <br>
-                    <p onclick="applyAllInputs(null, null)" class="bouton">apply values</p>
+                    <br><p onclick="applyAllInputs(null, null)" class="bouton">apply values</p>
                 </div>
             </div>
         </div>
@@ -92,13 +85,19 @@
         <h3> Presets :</h3>
         <div class="presets">
             <p onclick="presetSandStream();" class="bouton" id="sandStream">sandStream</p>
-            <p onclick="presetHighway()" class="bouton" id="highway">highway
-            </p>
+            <p onclick="presetHighway()" class="bouton" id="highway">highway</p>
             <p onclick="presetGenerativeMap()" class="bouton" id="generativeMap">generative map</p>
             <p onclick="presetGlitch()" class="bouton" id="glitch">glitch</p>
             <p onclick="presetDuoTone()" class="bouton" id="duoTone">duoColor</p>
         </div>
     </div>
+
+    <footer>
+        <a href="https://www.linkedin.com/in/justin-hurson-0794b1253" target="_blank" title="contact me on Linkedin"><img class="imageFooter" src="images/logoLinkedin.png" alt="Logo Linkedin"></a>
+        <a href="https://github.com/ChevalMonsieur/AdaptiveFlowField" target="_blank" title="see the Github repository&#013of my project"><img class="imageFooter" src="images/logoGithub.png" alt="logo Github"></a>
+        <a href="https://mrcheval.itch.io" target="_blank" title="try out my games&#013on Itch.io"><img class="imageFooter" src="images/logoItch.png" alt="logo Itch.io"></a>
+        <a href="mailto:just.1et2mii@gmail.com" target="_blank" title="mail me"><img class="imageFooter" src="images/logoMail.png" alt="Logo Mail"></a>
+    </footer>
 </body>
 
 </html>
