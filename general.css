@@ -2,6 +2,11 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap');
 
+@font-face {
+    font-family: "NeutralFace";
+    src: url(font.otf) format("opentype");
+}
+
 /* TAG */
 
 body {
@@ -50,6 +55,9 @@ input {
 
 .titre {
     margin: 4rem auto 2rem auto;
+
+    font-family: "NeutralFace";
+    letter-spacing: 0.2rem;
 }
 
 .bouton {
@@ -86,7 +94,9 @@ input {
 
 .bouton:hover {
     transform: scale(1.1);
+    color: rgb(210,210,210);
     cursor: pointer;
+    font-weight: bold;
 }
 
 .presets {
@@ -96,22 +106,48 @@ input {
 /* ID */
 
 #turquoise:hover {
-    color: rgb(0,255,200);
+    color: rgb(113, 175, 161);
 }
 
 #red:hover {
-    color: rgb(255,100,100);
+    color: rgb(197, 107, 107);
 }
 
 #saffron:hover {
-    color: rgb(225,170,10);
+    color: rgb(211, 186, 109);
 }
 
 #titanium:hover {
-    color: rgb(210,210,210);
+    color: rgb(153, 153, 153);
 }
 
+#sandStream:hover {
+    color: rgb(213, 213, 169);
+}
 
+#preset2:hover {
+    color: rgb(174, 150, 213);
+}
+
+#generativeMap:hover {
+    color: rgb(214, 151, 151);
+}
+
+#glitch:hover {
+    color: rgb(177, 213, 177);
+}
+
+#duoTone:hover {
+    background: linear-gradient(to right, rgb(255, 247, 3) 0%, rgb(255, 77, 216) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+#duoTone:hover::after {
+    content: ' (CPU intensive)';
+    font-size: xx-small;
+}
 
 /* MEDIA QUERIES */
 
@@ -156,5 +192,4 @@ input {
     .sideBar {
         width: 30%;
     }
-
 }

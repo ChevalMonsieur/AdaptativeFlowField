@@ -18,8 +18,10 @@
 
         <div style="display: flex;">
             <main id="main" class="visu">
-                <p onclick="noiseSeed(random(10000)); reset()" class="bouton boutonAbsolu">new seed</p>
-                <p class="bouton boutonFixed" style="right: 100;" onclick="saveCanvas();" title="don't be impatient&#013it might take a while">save canva</p>
+                <p onclick=" let x = random(10000); noiseSeed(x); console.log(x); reset();" class="bouton boutonAbsolu">
+                    new seed</p>
+                <p class="bouton boutonFixed" onclick="saveCanvas();"
+                    title="don't be impatient&#013it might take a while">save canva</p>
             </main>
 
             <div class="sideBar">
@@ -28,14 +30,14 @@
                         <h3>Colors :</h3>
 
                         <div class="liste">
-                            <p onclick="currentColor = color(0, 255, 200, opacity); reset()" class="bouton"
-                                id="turquoise">turquoise</p>
-                            <p onclick="currentColor = color(255, 0, 0, opacity); reset()" class="bouton" id="red">red
+                            <p onclick="inputColor(color(0, 255, 200, opacity))" class="bouton" id="turquoise">turquoise
                             </p>
-                            <p onclick="currentColor = color(225, 170, 10, opacity); reset()" class="bouton"
-                                id="saffron">saffron</p>
-                            <p onclick="currentColor = color(210, 210, 210, opacity); reset()" class="bouton"
-                                id="titanium">titanium</p>
+                            <p onclick="inputColor(color(255, 0, 0, opacity))" class="bouton" id="red">red
+                            </p>
+                            <p onclick="inputColor(color(225, 170, 10, opacity))" class="bouton" id="saffron">saffron
+                            </p>
+                            <p onclick="inputColor(color(210, 210, 210, opacity))" class="bouton" id="titanium">titanium
+                            </p>
                         </div>
                     </div>
 
@@ -43,9 +45,9 @@
                         <h3>Border rule :</h3>
 
                         <div class="liste">
-                            <p onclick="borderRule='randomTeleport'; reset()" class="bouton">random teleport</p>
-                            <p onclick="borderRule='linkedTeleport'; reset()" class="bouton">linked teleport</p>
-                            <p onclick="borderRule='none'; reset()" class="bouton">none</p>
+                            <p onclick="inputBorderRule('randomTeleport')" class="bouton">random teleport</p>
+                            <p onclick="inputBorderRule('linkedTeleport')" class="bouton">linked teleport</p>
+                            <p onclick="inputBorderRule('none')" class="bouton">none</p>
                         </div>
                     </div>
 
@@ -56,7 +58,7 @@
                             <p class="valueName">particle amount : </p>
                             <input id="nbPoints" class="value" value="2000" onkeydown="inputNbParticle(event);"><br>
                         </div>
-                        <div class="valueWithName" title="usual values : 0.1 - 2">
+                        <div class="valueWithName" title="usual values : 0.1 - 100">
                             <p class="valueName">speed : </p>
                             <input id="speed" class="value" value="0.5" onkeydown="inputSpeed(event)">
                         </div>
@@ -82,34 +84,21 @@
                         </div>
                     </div>
                     <br>
-                    <p onclick="applyAllInputs()" class="bouton">apply values</p>
+                    <p onclick="applyAllInputs(null, null)" class="bouton">apply values</p>
                 </div>
             </div>
         </div>
-            <h3 style="margin-top: 3rem;"> Presets :</h3>
-            <div class="presets">
-                <p onclick="currentColor = color(120, 0, 255, opacity); reset()" class="bouton"
-                    id="turquoise">turquoise</p>
-                <p onclick="currentColor = color(255, 0, 0, opacity); reset()" class="bouton" id="red">red
-                </p>
-                <p onclick="currentColor = color(225, 170, 10, opacity); reset()" class="bouton"
-                    id="saffron">saffron</p>
-                <p onclick="currentColor = color(210, 210, 210, opacity); reset()" class="bouton"
-                    id="titanium">titanium</p>
 
-            </div>
+        <h3> Presets :</h3>
+        <div class="presets">
+            <p onclick="presetSandStream();" class="bouton" id="sandStream">sandStream</p>
+            <p onclick="preset2()" class="bouton" id="preset2">preset2
+            </p>
+            <p onclick="presetGenerativeMap()" class="bouton" id="generativeMap">generative map</p>
+            <p onclick="presetGlitch()" class="bouton" id="glitch">glitch</p>
+            <p onclick="presetDuoTone()" class="bouton" id="duoTone">duoColor</p>
         </div>
     </div>
 </body>
 
 </html>
-
-<!--font-size: 90px;
-background: linear-gradient(to right,
-        var(--gradient-one) 0%,
-        var(--gradient-two) 100%);
--webkit-background-clip: text;
--webkit-text-fill-color: transparent;
-transition: 350ms ease-in-out;
-margin: 0 0 .3em 0;
-text-align: center;-->

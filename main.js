@@ -10,7 +10,8 @@ let fadeSpeed = 0; // how fast the points will fade out (0 = no fade, 255 = inst
 let borderRule = "randomTeleport"; // determines what happens when a point goes off-screen (randomTeleport, linkedTeleport, none)
 
 let mainWidth, mainHeight; // size of the canvas
-let currentColor; // current color of the points
+let currentColor; // color of the points
+let currentColor2; // 2nd color of the points (if needed)
 
 function setup() {
 
@@ -26,7 +27,8 @@ function setup() {
     // initialize canvas
     createCanvas(mainWidth, mainHeight); // set canva size
     background(0); // set background color in A
-    currentColor = color(0,255,200, opacity); // set base color in RGBA
+    currentColor = color(0,255,210, opacity); // set base color in RGBA
+    currentColor2 = null; // set secondary color in RGBA
     stroke(currentColor); // set color in RGBA
     strokeWeight(size); // set size of points
 
@@ -37,10 +39,13 @@ function setup() {
 }
 
 function draw() {
+    // add fade effect if fade != 0
     if (fadeSpeed > 0) {
         background(0, fadeSpeed);
     }
+
     for (vector of points) {
+        if (points[Math.floor(points.length/2)] == vector && currentColor2 != null) stroke(currentColor2)
         // set the direction of the point with semi-random noise
         let direction = 2 * rotationScale * Math.PI * noise(vector.x / positionScale, vector.y / positionScale);
 
@@ -70,6 +75,7 @@ function draw() {
         // draw the point
         point(vector.x, vector.y)
     }
+    stroke(currentColor); // reset color
 }
 
 function windowResized() {
@@ -93,8 +99,8 @@ function windowResized() {
 function reset() {
     //reset values
     stroke(currentColor);
+    strokeWeight(size);
     background(0);
-    totalOffset = 0;
 
     // replace all points to random positions
     for (vector of points) {
@@ -103,8 +109,9 @@ function reset() {
     }
 }
 
+
 ///////////////////////////
-//    Lien avec HTML     //
+//      Values HTML      //
 ///////////////////////////
 
 function inputNbParticle(event) {
@@ -132,7 +139,6 @@ function inputSpeed(event) {
 
 function inputSize(event) {
     if (event.keyCode === 13) { // check if enter is pressed
-        console.log("inputSize");
         size = document.getElementById("size").value; // change size
         strokeWeight(size); // set size of points
         reset();
@@ -141,7 +147,6 @@ function inputSize(event) {
 
 function inputPositionScale(event) {
     if (event.keyCode === 13) { // check if enter is pressed
-        console.log("inputPositionScale");
         positionScale = document.getElementById("positionScale").value; // change positionScale
         reset();
     }
@@ -149,7 +154,6 @@ function inputPositionScale(event) {
 
 function inputRotationScale(event) {
     if (event.keyCode === 13) { // check if enter is pressed
-        console.log("inputRotationScale");
         rotationScale = document.getElementById("rotationScale").value; // change rotationScale
         reset();
     }
@@ -157,9 +161,9 @@ function inputRotationScale(event) {
 
 function inputOpacity(event) {
     if (event.keyCode === 13) { // check if enter is pressed
-        console.log("inputOpacity");
         opacity = Math.floor(document.getElementById("opacity").value); // change opacity (USE MATH.FLOOR BECAUSE STROKE DOESN'T ACCEPT FLOATS)
         currentColor.setAlpha(opacity); // set opacity in color
+        if (currentColor2 != null) currentColor2.setAlpha(opacity); // set opacity in color2 (if needed
         stroke(currentColor); // set color in RGBA
         reset();
     }
@@ -167,15 +171,31 @@ function inputOpacity(event) {
 
 function inputFade(event) {
     if (event.keyCode === 13) { // check if enter is pressed
-        console.log("inputFade");
         fadeSpeed = Math.floor(document.getElementById("fadeSpeed").value); // change fadeSpeed (USE MATH.FLOOR BECAUSE STROKE DOESN'T ACCEPT FLOATS)
         reset();
     }
 }
 
-function applyAllInputs() {
-    console.log("applyAllInputs");
-    // calls all inputs with correct event.keycode
+function inputBorderRule(inputBorderRule) {
+    if (inputBorderRule != null) {
+        borderRule = inputBorderRule // change borderRule
+    }
+    reset();
+}
+
+function inputColor(inputColor, inputColor2) {
+    if (inputColor != null) {
+        currentColor = inputColor; // change color
+        currentColor2 = inputColor2; // change 2nd color
+    }
+
+    reset();
+}
+
+function applyAllInputs(newBorderRule, newColor, newColor2) {
+    // calls all inputs with correct event.keycode (enter)
+    inputBorderRule(newBorderRule);
+    inputColor(newColor, newColor2);
     inputNbParticle({keyCode: 13});
     inputSpeed({keyCode: 13});
     inputSize({keyCode: 13});
@@ -183,4 +203,84 @@ function applyAllInputs() {
     inputRotationScale({keyCode: 13});
     inputOpacity({keyCode: 13});
     inputFade({keyCode: 13});
+
+    reset();
+}
+
+
+///////////////////////////
+//        Presets        //
+///////////////////////////
+
+function presetSandStream() {
+
+    // modify all values in html
+    document.getElementById("nbPoints").value = 2000;
+    document.getElementById("speed").value = 50;
+    document.getElementById("size").value = 1;
+    document.getElementById("positionScale").value = 40000;
+    document.getElementById("rotationScale").value = 200;
+    document.getElementById("opacity").value = 100;
+    document.getElementById("fadeSpeed").value = 4;
+
+    noiseSeed(2992); // change noise seed to a certain seed to have a nice result
+
+    applyAllInputs("randomTeleport", color(255,255,200, opacity), null);
+}
+
+
+function preset2() {
+    document.getElementById("nbPoints").value = 1000;
+    document.getElementById("speed").value = 10;
+    document.getElementById("size").value = 1;
+    document.getElementById("positionScale").value = 5000;
+    document.getElementById("rotationScale").value = 200;
+    document.getElementById("opacity").value = 200;
+    document.getElementById("fadeSpeed").value = 15;
+
+    noiseSeed(5175); // change noise seed to a certain seed to have a nice result
+
+    applyAllInputs("randomTeleport", color(130,0,255, opacity), null);
+}
+
+function presetGenerativeMap() {
+    document.getElementById("nbPoints").value = 3000;
+    document.getElementById("speed").value = 0.2;
+    document.getElementById("size").value = 1;
+    document.getElementById("positionScale").value = 200;
+    document.getElementById("rotationScale").value = 200;
+    document.getElementById("opacity").value = 20;
+    document.getElementById("fadeSpeed").value = 0;
+
+    noiseSeed(8517); // change noise seed to a certain seed to have a nice result
+
+    applyAllInputs("randomTeleport", color(115, 64, 50, opacity), null);
+}
+
+function presetGlitch() {
+    document.getElementById("nbPoints").value = 2000;
+    document.getElementById("speed").value = 150;
+    document.getElementById("size").value = 0.1;
+    document.getElementById("positionScale").value = 200000000000;
+    document.getElementById("rotationScale").value = 700000000000000000;
+    document.getElementById("opacity").value = 100;
+    document.getElementById("fadeSpeed").value = 0;
+
+    noiseSeed(4610); // change noise seed to a certain seed to have a nice result
+
+    applyAllInputs("randomTeleport", color(150, 255, 150, opacity), null);
+}
+
+function presetDuoTone() {
+    document.getElementById("nbPoints").value = 10000;
+    document.getElementById("speed").value = 0.3;
+    document.getElementById("size").value = 1;
+    document.getElementById("positionScale").value = 500;
+    document.getElementById("rotationScale").value = 0.5;
+    document.getElementById("opacity").value = 7;
+    document.getElementById("fadeSpeed").value = 0;
+
+    noiseSeed(8201); // change noise seed to a certain seed to have a nice result
+
+    applyAllInputs("linkedTeleport", color(255, 255, 100, opacity), color(255, 100, 180, opacity));
 }
