@@ -26,7 +26,7 @@
   </tr>
 </table>  
 
-<br> AdaptiveFlowField aims to both let non-coders have fun on the website and find a cool background if they want, and also let coders use the code to implement in their own projects/, portfolios or other things.
+<br> AdaptiveFlowField aims to both let non-coders have fun on the website and find a cool background if they want, and also let coders use the code to implement in their own projects, portfolios or other things.
 
 <br>
 
