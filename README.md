@@ -83,7 +83,7 @@ here is a list of all the variable in order and their specification :
 
 <p align="center" >
   <b>AdaptiveFlowField</b> freely downloaded/used repository for personal and commercial use.
-  <br> <br> Do not resell, redistribute in any way without the consent of creator Justin HURSON aka @ChevalMonsieur. 
+  <br> <br> Do not resell or redistribute in any way without the consent of creator Justin HURSON aka @ChevalMonsieur. 
   <br> <br> By using this repository's content, you agree to these terms.
   <br> <br> Thank you and enjoy!
 </p>
