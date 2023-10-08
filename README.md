@@ -36,7 +36,7 @@ Get started quickly in 5 simple steps :
 <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.min.js"></script>
 <script src="main.js"></script>
 ````
-- add a ``<main>`` tag where you want the flow field to appear (a ``<canvas>`` tag will automatically appear and take full width).
+- add a ``<main>`` tag where you want the flow field to appear (a ``<canvas>`` tag will automatically appear when hosted and take full width).
 - copy the ``main.js`` script in the fork and add it in the same directory as your html file.
 - modify the lines 24-28 and 91-95 to make the canva take the height of your choice.
 - IT'S DONE !
