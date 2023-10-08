@@ -1,3 +1,16 @@
+<details>
+  <summary>Table of Contents</summary>
+  <ol>
+    <li><a href="#adaptive-flow-field">Adaptive flow field</a></li>
+    <li><a href="#what-is-in-this-repo">What is in this repo</a></li>
+    <li><a href="#add-it-to-your-website">Add it to your website</a></li>
+    <li><a href="#what-do-the-variables-change">What do the variables change</a></li>
+    <li><a href="#license">License</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#thanks">Thanks</a></li>    
+  </ol>
+</details>
+
 # ADAPTIVE FLOW FIELD
 
 <br> AdaptiveFlowField is a website and a small JS script that allows you to make FlowFields based on perlin noise that can look like this :
@@ -17,7 +30,7 @@
 
 <br>
 
-## WHAT'S IN THIS REPO
+## WHAT IS IN THIS REPO
 
 This repository contains multiple assets to let people start up with flow fields, here is a list of it :
 - a <a href="https://chevalmonsieur.github.io/AdaptiveFlowField/">website</a> that shows how the script can be implemented and let you simply ``find your favorite`` flow field
@@ -27,7 +40,7 @@ This repository contains multiple assets to let people start up with flow fields
 
 <br>
 
-## HOW TO PUT IT ON YOUR OWN WEBSITE
+## ADD IT TO YOUR WEBSITE
 
 Get started quickly in 5 simple steps :
 - fork this repository anywhere on your computer.
