@@ -1,7 +1,7 @@
 <details>
   <summary>Table of Contents</summary>
   <ol>
-    <li><a href="#adaptive-flow-field">Adaptive flow field</a></li>
+    <li><a href="#adaptative-flow-field">adaptative flow field</a></li>
     <li><a href="#what-is-in-this-repo">What is in this repo</a></li>
     <li><a href="#add-it-to-your-website">Add it to your website</a></li>
     <li><a href="#what-do-the-variables-change">What do the variables change</a></li>
@@ -11,9 +11,9 @@
   </ol>
 </details>
 
-# ADAPTIVE FLOW FIELD
+# ADAPTATIVE FLOW FIELD
 
-<br> AdaptiveFlowField is a website and a small JS script that allows you to make FlowFields based on perlin noise that can look like this :
+<br> AdaptativeFlowField is a website and a small JS script that allows you to make FlowFields based on perlin noise that can look like this :
 
 <table>
   <tr>
@@ -26,14 +26,14 @@
   </tr>
 </table>  
 
-<br> AdaptiveFlowField aims to both let non-coders have fun on the website and find a cool background if they want, and also let coders use the code to implement in their own projects, portfolios or other things.
+<br> AdaptativeFlowField aims to both let non-coders have fun on the website and find a cool background if they want, and also let coders use the code to implement in their own projects, portfolios or other things.
 
 <br>
 
 ## WHAT IS IN THIS REPO
 
 This repository contains multiple assets to let people start up with flow fields, here is a list of it :
-- a <a href="https://chevalmonsieur.github.io/AdaptiveFlowField/">website</a> that shows how the script can be implemented and let you simply ``find your favorite`` flow field
+- a <a href="https://chevalmonsieur.github.io/AdaptativeFlowField/">website</a> that shows how the script can be implemented and let you simply ``find your favorite`` flow field
 - a commented ``JS script`` including various parameters that can be updated in realtime to easily get your perfect flow field simulation 
 - a shorter version of this script ``(17 lines)`` to show that it's not that hard to implement
 - this ``README.md`` to explain how everything works
@@ -82,7 +82,7 @@ here is a list of all the variable in order and their specification :
 <b> Personal License Agreement :</b>
 
 <p align="center" >
-  <b>AdaptiveFlowField</b> freely downloaded/used repository for personal and commercial use.
+  <b>AdaptativeFlowField</b> freely downloaded/used repository for personal and commercial use.
   <br> <br> Do not resell or redistribute in any way without the consent of creator Justin HURSON aka @ChevalMonsieur. 
   <br> <br> By using this repository's content, you agree to these terms.
   <br> <br> Thank you and enjoy!
